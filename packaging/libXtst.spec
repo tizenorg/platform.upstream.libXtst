@@ -4,13 +4,9 @@ Release:        0
 License:        MIT
 Summary:        Xlib-based client API for the XTEST and RECORD extensions
 Url:            http://xorg.freedesktop.org/
-Group:          Development/Libraries/C and C++
+Group:          Graphics/X Window System
 
-#Git-Clone:	git://anongit.freedesktop.org/xorg/lib/libXtst
-#Git-Web:	http://cgit.freedesktop.org/xorg/lib/libXtst/
 Source:         %{name}-%{version}.tar.bz2
-Patch0:         u_libXtst_Added-missing-xi-requires-to-pkconfig-file.patch
-#git#BuildRequires:	autoconf >= 2.60, automake, libtool
 BuildRequires:  fdupes
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(inputproto)
@@ -20,7 +16,6 @@ BuildRequires:  pkgconfig(xext) >= 1.0.99.4
 BuildRequires:  pkgconfig(xextproto) >= 7.0.99.3
 BuildRequires:  pkgconfig(xi)
 BuildRequires:  pkgconfig(xorg-macros) >= 1.12
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 The XTEST extension is a minimal set of client and server extensions
@@ -33,7 +28,7 @@ X protocol and arbitrary X extension protocol.
 
 %package devel
 Summary:        Development files for the X11 XTEST and RECORD extensions
-Group:          Development/Libraries/C and C++
+Group:          Development/Libraries
 Requires:       %{name} = %{version}
 
 %description devel
@@ -50,7 +45,6 @@ in %{name}.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure --docdir=%_docdir/%{name} --disable-static
@@ -68,6 +62,7 @@ make %{?_smp_mflags}
 
 %files
 %defattr(-,root,root)
+%license COPYING
 %{_libdir}/libXtst.so.6*
 
 %files devel
