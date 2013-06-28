@@ -7,6 +7,7 @@ Url:            http://xorg.freedesktop.org/
 Group:          Graphics/X Window System
 
 Source:         %{name}-%{version}.tar.bz2
+Source1001: 	libXtst.manifest
 BuildRequires:  fdupes
 BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(inputproto)
@@ -45,6 +46,7 @@ in %{name}.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure --docdir=%_docdir/%{name} --disable-static
@@ -61,11 +63,13 @@ make %{?_smp_mflags}
 %postun  -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %license COPYING
 %{_libdir}/libXtst.so.6*
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_includedir}/X11/*
 %{_libdir}/libXtst.so
