@@ -1,3 +1,5 @@
+%bcond_with x
+
 Name:           libXtst
 Version:        1.2.1
 Release:        0
@@ -17,6 +19,10 @@ BuildRequires:  pkgconfig(xext) >= 1.0.99.4
 BuildRequires:  pkgconfig(xextproto) >= 7.0.99.3
 BuildRequires:  pkgconfig(xi)
 BuildRequires:  pkgconfig(xorg-macros) >= 1.12
+
+%if !%{with x}
+ExclusiveArch:
+%endif
 
 %description
 The XTEST extension is a minimal set of client and server extensions
