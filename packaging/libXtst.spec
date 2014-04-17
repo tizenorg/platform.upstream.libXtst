@@ -1,7 +1,7 @@
 %bcond_with x
 
 Name:           libXtst
-Version:        1.2.1
+Version:        1.2.2
 Release:        0
 License:        MIT
 Summary:        Xlib-based client API for the XTEST and RECORD extensions
@@ -55,7 +55,7 @@ in %{name}.
 cp %{SOURCE1001} .
 
 %build
-%configure --docdir=%_docdir/%{name} --disable-static
+%autogen --docdir=%_docdir/%{name} --disable-static
 make %{?_smp_mflags}
 
 %install
